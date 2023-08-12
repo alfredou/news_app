@@ -1,6 +1,7 @@
 import React from 'react'
 import { links, social } from '@/navInfo'
 import Link from 'next/link'
+import Newsletter from './Newsletter'
 
 function Footer() {
   return (
@@ -16,32 +17,14 @@ function Footer() {
               </div>
           </div>
           <h2 className='text-2xl font-bold'>Sections</h2>
-          <div className="mt-5 grid gap-3 grid-cols-2 md:grid-cols-3 xl:justify-center">
+          <div className="container mx-auto mt-5 grid gap-3 max-w-4xl grid-cols-2 md:grid-cols-3 xl:justify-center">
                     {links.map((item, i)=>{
-                     return <div className='grid gap-4 w-full'>
-                           <Link className="text-xl font-bold hover:text-white" href={item.url} key={i}>{item.title}</Link>
-                           <div className='flex flex-col gap-2'>
-                                    {item.subSections.map((subsection, index)=>{
-                                        return <Link href={subsection.url} key={index}>{subsection.title}</Link>
-                                     })}
-                            </div>
+                     return <div className='grid gap-4 w-full' key={i}>
+                           <Link className="text-xl font-semibold hover:text-white" href={`/category/${item.url}`}>{item.title}</Link>
                         </div>
                     })} 
           </div>
-          <div className='flex flex-col gap-7 pb-5'>
-               <h2 className='text-2xl font-bold'>Newsletter</h2>
-               <div className='flex flex-col justify-center items-center gap-5'>
-                        <div className='flex gap-3'>
-                                <input className="p-2 w-40 border-none outline-none" type="text" placeholder='nombre'/>
-                                <input className="p-2 w-40 border-none outline-none" type="text" placeholder='apellido'/>
-                        </div>
-                        <div className='flex flex-col justify-center items-center gap-5'>
-                            <input className="p-2 w-[333px] border-none outline-none" type="email" placeholder='correo'/>
-                            <button className='w-[200px] p-3 text-xl bg-slate-700 rounded-md hover:bg-slate-800 text-white'>Subscribe</button>
-                        </div> 
-               </div>
-
-          </div>
+          <Newsletter/>
     </div>
   )
 }

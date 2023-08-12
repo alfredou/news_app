@@ -1,5 +1,5 @@
 "use client"
-import React, { DetailedHTMLProps, HTMLAttributes, ReactHTMLElement } from "react";
+import React from "react";
 import { createPortal } from "react-dom";
 import { ReactNode, useEffect, useState } from "react";
 
@@ -12,7 +12,8 @@ type Props = {
 function NavbarMenu({ children, handleShowPortal, showPortal }: Props) {
 
     const handleCloseModal = (e: React.MouseEvent<HTMLDivElement>)=>{
-        if(e.target.id == "containerRelative"){
+      const target = e.currentTarget.id 
+        if(target == "containerRelative"){
             handleShowPortal(e)
         }
      }

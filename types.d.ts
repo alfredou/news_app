@@ -46,31 +46,70 @@ export type WeatherTypes = {
     date: string
 }
 
+interface Categories {
+  name: string,
+  slug: string
+}
+
+interface Author {
+  bio: string,
+  name: string,
+  id: string,
+  photo: {
+    url: string,
+  } 
+  category: Categories
+}
+
+interface AuthorsList {
+  authors: Author[]
+}
+
+interface ChildrenItem {
+  type: string,
+  children: {
+    text: string
+  }[]
+}
+
+interface RawContent{
+   raw: {
+      children: ChildrenItem[]
+   }
+}
+
+interface PostData {
+  author: Author,
+  createdAt: Date,
+  slug: string,
+  title: string,
+  excerpt: string,
+  featuredImage: {
+    url: string,
+  },
+  categories: Array<Categories>,
+  content: RawContent
+}
+
+interface Comments {
+    name: string,
+    createdAt: Date,
+    comment: string
+}
+
+interface CommentsTypes {
+  comments: Comments[]
+}
 
 interface Edges {
-        node: {
-          author: {
-              bio: string,
-              name: string,
-              id: string,
-              photo: {
-                url: string,
-              }                
-          },
-          createdAt: Date,
-          slug: string,
-          title: string,
-          excerpt: string,
-          featuredImage: {
-            url: string,
-          },
-          categories: {
-              name: string,
-              slug: string
-          }
-      }
+        node: Omit<PostData, "content">
   }
 
+interface PostDetailsTypes {
+   post: PostData
+}
+
+export type CategoryType = { categories: Array<Categories> }
 
 export type PostTypes = {
     postsConnection: {
@@ -78,4 +117,19 @@ export type PostTypes = {
       }
 }
 
+type Post = Omit<PostData, "categories", "excerpt", "author", "content">
 
+/*
+export interface Post {
+    createdAt: Date,
+    slug: string,
+    title: string,
+    featuredImage: {
+      url: string,
+    }
+}*/
+
+
+export interface PostList {
+  posts: Post[]
+}

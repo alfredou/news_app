@@ -1,118 +1,28 @@
 export const links = [
     {
         id: 1,
-        title: "Home",
-        url: "/",
-        subSections: [
-            {
-                url: "/national",
-                title: "National"
-            },
-            {
-                url: "/international",
-                title: "international"
-            },
-            {
-                url: "/last_news",
-                title: "last news"
-            }
-        ]
+        title: "Present",
+        url: "/present",
     },
     {
         id: 2,
-        title: "Actualidad",
-        url: "/actualidad",
-        subSections: [
-            {
-                url: "/national",
-                title: "National"
-            },
-            {
-                url: "/international",
-                title: "international"
-            },
-            {
-                url: "/last_news",
-                title: "last news"
-            }
-        ]
+        title: "World",
+        url: "/world",
     },
     {
         id: 3,
-        title: "Mundo",
-        url: "/mundo",
-        subSections: [
-            {
-                url: "/national",
-                title: "National"
-            },
-            {
-                url: "/international",
-                title: "international"
-            },
-            {
-                url: "/last_news",
-                title: "last news"
-            }
-        ]
+        title: "Economy",
+        url: "/economy",
     },
     {
         id: 4,
-        title: "Economia",
-        url: "/economia",
-        subSections: [
-            {
-                url: "/national",
-                title: "National"
-            },
-            {
-                url: "/international",
-                title: "international"
-            },
-            {
-                url: "/last_news",
-                title: "last news"
-            }
-        ]
+        title: "Sports",
+        url: "/sports",
     },
     {
         id: 5,
-        title: "Deportes",
-        url: "/deportes",
-        subSections: [
-            {
-                url: "/national",
-                title: "National"
-            },
-            {
-                url: "/international",
-                title: "international"
-            },
-            {
-                url: "/last_news",
-                title: "last news"
-            }
-        ]
-    },
-    {
-        id: 6,
-        title: "Ultimas noticias",
-        url: "/ultimas_noticias",
-        subSections: [
-            {
-                url: "/national",
-                title: "National"
-            },
-            {
-                url: "/international",
-                title: "international"
-            },
-            {
-                url: "/last_news",
-                title: "last news"
-            }
-        ]
-
+        title: "Last News",
+        url: "/last-news",
     }
 ]
 export const social = [

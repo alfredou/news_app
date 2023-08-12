@@ -4,14 +4,14 @@ import PostCard from './PostCard'
 import { Edges } from '@/types'
 
 const getData = async ()=>{
-     const res = await getPosts()
+     const res = await getPosts(5)
      return res
 }
 
 async function Post() {
     const result: Edges[] = await getData() 
   return (
-    <div className='mt-8 grid gap-3 justify-center flex-wrap md:grid-cols-custom grid-rows-2'>
+    <div className='mt-8 grid gap-3 gap-x-9 justify-center flex-wrap md:grid-cols-custom grid-rows-2'>
         {result?.map((post,index)=>{
           return(
             <>
