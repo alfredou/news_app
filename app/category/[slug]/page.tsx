@@ -53,7 +53,7 @@ async function CategoryPost({params}: {params: Categories}) {
                    </div>
                    <div className='col-span-1 lg:col-span-4'>
                          <div className='relative lg:sticky top-8'>
-                              <Columnist/>
+                              {/*<Columnist/>*/}
                          </div>
                    </div>
            </div>
