@@ -3,7 +3,7 @@ import { getCategories, getCategoryPost } from '@/services'
 import { Categories } from '@/types'
 import ListPosts from '@/components/ListPosts'
 import Columnist from '@/components/Columnist'
-
+/*
 export async function generateMetadata({params}: {params: {slug: string}}){
   try{
     if(!params){
@@ -13,8 +13,8 @@ export async function generateMetadata({params}: {params: {slug: string}}){
       }
     }
     return {
-      title: params.slug,
-      description: `This is the description for ${params.slug}`
+      title: params?.slug,
+      description: `This is the description for ${params?.slug}`
     }
   }catch(e){
     console.log(e)
@@ -24,7 +24,7 @@ export async function generateMetadata({params}: {params: {slug: string}}){
     }
   }
 }
-
+*/
 export async function generateStaticParams(){
     const categories = await getCategories()
     return categories.map(({slug})=>({params: {slug}}))
@@ -38,7 +38,7 @@ async function getPostByCategory(slug: string){
 
 async function CategoryPost({params}: {params: Categories}) {
    const post = await getPostByCategory(params.slug)
-  
+
    return (
       <div className='container mx-auto px-10 mb-8'>
             <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
