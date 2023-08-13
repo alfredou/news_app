@@ -3,7 +3,7 @@ import { getCategories, getCategoryPost } from '@/services'
 import { Categories } from '@/types'
 import ListPosts from '@/components/ListPosts'
 import Columnist from '@/components/Columnist'
-/*
+
 export async function generateMetadata({params}: {params: {slug: string}}){
   try{
     if(!params){
@@ -24,7 +24,7 @@ export async function generateMetadata({params}: {params: {slug: string}}){
     }
   }
 }
-*/
+
 export async function generateStaticParams(){
     const categories = await getCategories();
     return categories.map(({slug})=>({params: {slug}}))
