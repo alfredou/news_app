@@ -31,19 +31,19 @@ export async function generateStaticParams(){
   return links.map(({url})=>({params: {url}}))
 }
 export const dynamicParams = true
-/*
+
 async function getPostByCategory(slug: string){
-  const data = await getCategoryPost(slug, 10)
+  const data = await getCategoryPost(slug, 5)
   return data
 } 
-*/
+
 
 async function CategoryPost({params}: {params: Categories}) {
-   //const post = await getPostByCategory(params.slug)
+    const post = await getPostByCategory(params.slug)
 
    return (
       <div className='container mx-auto px-10 mb-8'>
-            {/*<div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
+            <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
                    <div className='col-span-1 lg:col-span-7'>
                          {post.map((posts, i)=>(
                           <>
@@ -56,7 +56,7 @@ async function CategoryPost({params}: {params: Categories}) {
                               <Columnist/>
                          </div>
                    </div>
-           </div>*/}
+           </div>
    </div>
   )
 }
