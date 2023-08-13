@@ -1,5 +1,5 @@
 import { request, gql } from 'graphql-request';
-import { AuthorsList, PostTypes, Edges, PostList, CategoryType, PostDetailsTypes, Comments, CommentsTypes} from '@/types';
+import { PostAuthorsTypes, PostTypes, Edges, PostList, CategoryType, PostDetailsTypes, Comments, CommentsTypes} from '@/types';
 import { CombinedType } from '@/components/CommentsForm';
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!;
@@ -220,43 +220,54 @@ export const getCategories = async () => {
 //mostrara los post que pertenecen a esa categoria cuando entre en esa categoria
 export const getCategoryPost = async (slug: string, limit: number) => {
   const query = gql`
-    query GetCategoryPost($slug: String!, $limit: Int) {
-      postsConnection(where: {categories_some: {slug: $slug}}, first: $limit) {
-        edges {
-          cursor
-          node {
-            author {
-              bio
-              name
-              id
-              photo {
-                url
-              }
-            }
-            createdAt
-            slug
-            title
-            excerpt
-            featuredImage {
+  query GetCategoryPost($slug: String!, $limit: Int) {
+    postsConnection(where: {categories_some: {slug: $slug}}, first: $limit) {
+      edges {
+        cursor
+        node {
+          author {
+            bio
+            name
+            id
+            photo {
               url
             }
-            categories {
-              name
-              slug
-            }
           }
-        }
+          createdAt
+          slug
+          title
+          excerpt
+          featuredImage {
+            url
+          }
+          categories {
+            name
+            slug
+          }
+        }   
       }
     }
-  `;
+      authors {
+        bio
+      id
+      name
+      photo {
+       url
+      }
+      category{
+        name
+        slug
+      }
+    }
+  }`;
 
 
-  const result = await request<PostTypes>(graphqlAPI, query, { slug, limit });
+  const result = await request<PostAuthorsTypes>(graphqlAPI, query, { slug, limit });
 
-  return result.postsConnection.edges;
+  return {posts: result.postsConnection.edges, authors: result.authors};
 };
 
-
+/*
 export const getAuthors = async ()=>{
  const query = gql`query MyQuery() {
   authors {
@@ -276,4 +287,4 @@ export const getAuthors = async ()=>{
   const result = await request<AuthorsList>(graphqlAPI, query)
 
   return result.authors
-}
+}*/

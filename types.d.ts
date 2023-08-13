@@ -61,7 +61,10 @@ interface Author {
   category: Categories
 }
 
-interface AuthorsList {
+export type PostAuthorsTypes = {
+  postsConnection: {
+      edges: Array<Edges>
+    },
   authors: Author[]
 }
 

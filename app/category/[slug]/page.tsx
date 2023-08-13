@@ -4,7 +4,8 @@ import { Categories } from '@/types'
 import ListPosts from '@/components/ListPosts'
 import Columnist from '@/components/Columnist'
 import { links } from '@/navInfo'
-import { getAuthors } from '@/services'
+import { useRouter } from 'next/navigation'
+import Loader from '@/components/Loader'
 /*
 export async function generateMetadata({params}: {params: {slug: string}}){
   try{
@@ -27,6 +28,7 @@ export async function generateMetadata({params}: {params: {slug: string}}){
   }
 }
 */
+
 export async function generateStaticParams(){
   //const categories = await getCategories();
   return links.map(({url})=>({params: {url}}))
@@ -38,20 +40,16 @@ async function getPostByCategory(slug: string){
   return data
 } 
 
-async function getAuthorsData(){
-  const data = await getAuthors()
-  return data 
-} 
-
 async function CategoryPost({params}: {params: Categories}) {
+       
     const post = await getPostByCategory(params.slug)
-    const authors = await getAuthorsData()
+  //{posts: result.postsConnection.edges, authors: result.authors};
 
-   return (
+  return (
       <div className='container mx-auto px-10 mb-8'>
             <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
                    <div className='col-span-1 lg:col-span-7'>
-                         {post.map((posts, i)=>(
+                         {post.posts.map((posts, i)=>(
                           <>
                              <ListPosts key={i} postList={posts.node}/>
                           </>
@@ -59,7 +57,7 @@ async function CategoryPost({params}: {params: Categories}) {
                    </div>
                    <div className='col-span-1 lg:col-span-4'>
                          <div className='relative lg:sticky top-8'>
-                              <Columnist authors={authors.slice(0,1)}/>
+                              <Columnist authors={post.authors}/>
                          </div>
                    </div>
            </div>
