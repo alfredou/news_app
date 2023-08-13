@@ -28,7 +28,7 @@ function Newsletter() {
     e.preventDefault();
     setLoading(true)
     
-    emailjs.sendForm('service_sari86b', 'template_qfmix0h', form.current, '7FXEwTm6c0RI1t941')
+    emailjs.sendForm('service_sari86b', process.env.TEMPLATE, form.current, process.env.PLUBLIC_KEY)
       .then((result) => {
         if(result.text === 'OK'){
             setLoading(false)
