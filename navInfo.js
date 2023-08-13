@@ -2,27 +2,27 @@ export const links = [
     {
         id: 1,
         title: "Present",
-        url: "/present",
+        url: "present",
     },
     {
         id: 2,
         title: "World",
-        url: "/world",
+        url: "world",
     },
     {
         id: 3,
         title: "Economy",
-        url: "/economy",
+        url: "economy",
     },
     {
         id: 4,
         title: "Sports",
-        url: "/sports",
+        url: "sports",
     },
     {
         id: 5,
         title: "Last News",
-        url: "/last-news",
+        url: "last-news",
     }
 ]
 export const social = [

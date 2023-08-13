@@ -26,7 +26,7 @@ export async function generateMetadata({params}: {params: {slug: string}}){
 }
 */
 export async function generateStaticParams(){
-    const categories = await getCategories()
+    const categories = await getCategories();
     return categories.map(({slug})=>({params: {slug}}))
 }
 export const dynamicParams = true

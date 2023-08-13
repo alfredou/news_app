@@ -1,5 +1,6 @@
 "use client"; 
 import Link from "next/link"; 
+import { links } from "@/navInfo";
 import React from "react";
 import { useState, useEffect } from "react";
 import NavMenuPortal from "./navbar_menu";
@@ -13,14 +14,14 @@ function Navbar(){
     const [showInput, setShowInput] = useState(false)
     const [showPortal, setShowPortal] = useState(false)
     //const [showSections, setShowSections] = useState({section: false, indexMenu: 0})
-    const [categories, setCategories] = useState<Categories[]>([])
+   /* const [categories, setCategories] = useState<Categories[]>([])
 
     useEffect(()=>{
           getCategories().then((newCategories)=>{
                 setCategories(newCategories)
           })
     },[])
-
+*/
     const handleShowInput = ()=>{
         setShowInput(!showInput)
     }
@@ -49,9 +50,9 @@ function Navbar(){
           </div>
             <nav className="py-4 px-1 flex flex-col-reverse items-center md:flex-row justify-around">
                 <div className="flex gap-5 items-center h-5 justify-center">    
-                    {categories.slice(0,5).map(({slug, name})=>{
+                    {links.slice(0,5).map(({title, url})=>{
                         return(
-                           <Link className="font-semibold text-sm hover:border-b-4 border-cyan-600 sm:text-md md:text-md" href={`/category/${slug}`} key={slug}>{name}</Link>
+                           <Link className="font-semibold text-sm hover:border-b-4 border-cyan-600 sm:text-md md:text-md" href={`/category/${url}`} key={url}>{title}</Link>
                         )
                     })}
                 </div>
@@ -66,11 +67,11 @@ function Navbar(){
                 </div>
                 <h2 className="text-center text-md py-8 sm:text-xl">Sections</h2>
                 <div className="mt-10 flex flex-col gap-y-7 items-center justify-center md:mt-0">
-                    {categories.map((item)=>{
+                    {links.map(({title, url})=>{
                         return(
-                         <div key={item.slug} className="flex flex-col items-center justify-center w-full">
-                            <div className="flex w-full gap-5" id={item.name}>
-                              <Link onClick={handleShowPortal} className={`w-full text-md border-b-2 font-bold hover:text-blue-500 sm:text-md`} href={`/category/${item.slug}`}>{item.name}</Link>                              
+                         <div key={title} className="flex flex-col items-center justify-center w-full">
+                            <div className="flex w-full gap-5" id={title}>
+                              <Link onClick={handleShowPortal} className={`w-full text-md border-b-2 font-bold hover:text-blue-500 sm:text-md`} href={`/category/${url}`}>{title}</Link>                              
                               {/*<svg className={(showSections.section && showSections.indexMenu == i) ? `rotate-90` : ''} xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>*/}
                             </div>
                                
