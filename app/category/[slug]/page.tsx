@@ -4,6 +4,7 @@ import { Categories } from '@/types'
 import ListPosts from '@/components/ListPosts'
 import Columnist from '@/components/Columnist'
 import { links } from '@/navInfo'
+import { getAuthors } from '@/services'
 /*
 export async function generateMetadata({params}: {params: {slug: string}}){
   try{
@@ -37,9 +38,14 @@ async function getPostByCategory(slug: string){
   return data
 } 
 
+async function getAuthorsData(){
+  const data = await getAuthors()
+  return data 
+} 
 
 async function CategoryPost({params}: {params: Categories}) {
     const post = await getPostByCategory(params.slug)
+    const authors = await getAuthorsData()
 
    return (
       <div className='container mx-auto px-10 mb-8'>
@@ -53,7 +59,7 @@ async function CategoryPost({params}: {params: Categories}) {
                    </div>
                    <div className='col-span-1 lg:col-span-4'>
                          <div className='relative lg:sticky top-8'>
-                              {/*<Columnist/>*/}
+                              <Columnist authors={authors}/>
                          </div>
                    </div>
            </div>
