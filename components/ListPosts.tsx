@@ -10,11 +10,11 @@ function ListPosts({postList}:{ postList: newPostData}) {
   return (
     <>
   <Link href={`/post/${postList.slug}`}>
-    <div className="cursor-pointer bg-white rounded-lg lg:p-8 pb-12 mb-8 mt-10 shadow-xl">
+    <div className="cursor-pointer bg-white rounded-lg lg:p-8 pb-12 mb-8 mt-10 shadow-xl max-w-xl">
       <div className="relative overflow-hidden shadow-md mb-6">
         <Image src={postList.featuredImage.url} alt={postList.slug} width={400} height={400} loading="lazy" className="object-top h-full w-full object-cover  shadow-lg rounded-t-lg lg:rounded-lg" />
       </div>
-      <h1 className="text-center mb-5 font-bold border-b-2 pb-2 text-2xl sm:text-3xl md:text-4xl">{postList.title}</h1>
+      <h1 className="text-center mb-5 font-bold border-b-2 pb-2 text-2xl sm:text-3xl md:text-3xl">{postList.title}</h1>
       <div className="px-4 lg:px-0">
         <div className="flex items-center justify-around w-full border-b-2 pb-2">
           <div className="hidden md:flex items-center justify-center lg:mb-0 lg:w-auto mr-8">

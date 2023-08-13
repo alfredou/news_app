@@ -13,6 +13,7 @@ interface userDataTypes {
 function Newsletter() {
     //const [userData, setUserData] = useState<userDataTypes>({user_name: '', user_lastname: '', user_email: '' })
     const [loading, setLoading] = useState<boolean>(false)
+    const [subscription, setSubscription] = useState<boolean>(false)
 /*
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
        const target = e.target
@@ -24,18 +25,21 @@ function Newsletter() {
 */
   const form: any = useRef(null);
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-    const template: string = process.env.TEMPLATE!
-    const public_key = process.env.PUBLIC_KEY
-
-    e.preventDefault();
-    setLoading(true)
+      e.preventDefault();
+    const template: string | undefined = process.env.NEXT_PUBLIC_TEMPLATE!
+    const public_key: string | undefined = process.env.NEXT_PUBLIC_KEY
     
+    setLoading(true)
     emailjs.sendForm('service_sari86b', template, form.current, public_key)
       .then((result: any) => {
         if(result.text === 'OK'){
             setLoading(false)
+            setSubscription(true)
+            form.current.reset();
         }
-          console.log(result.text);
+        setTimeout(() => {
+            setSubscription(false);
+          }, 3000);        
       }, (error: any) => {
           console.log(error.text);
       });
@@ -69,6 +73,7 @@ function Newsletter() {
                         </div>
                         <div className='flex flex-col justify-center items-center gap-5'>
                             <input className="p-2 w-[333px] border-none outline-none" type="email" name="user_email" placeholder='email'/>
+                        {subscription && <p className="text-green-500">Te has subscrito a la newsletter ✔️</p>}
                          <button disabled={loading} className={loading ? 'flex items-center justify-center w-[170px] p-3 text-xl bg-slate-700 rounded-md hover:bg-slate-800 text-white cursor-not-allowed' : 'flex items-center justify-center w-[170px] p-3 text-xl bg-slate-700 rounded-md hover:bg-slate-800 text-white'}>
                             {loading && <svg className="mr-3 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"> <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                              </svg>}

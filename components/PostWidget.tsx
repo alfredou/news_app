@@ -24,7 +24,7 @@ const PostWidget = ({ categories, slug }: {categories: string[], slug: string}) 
 
 
   return (
-    <div className="bg-white rounded-lg p-8 pb-12 mb-8">
+    <div className="bg-white rounded-lg p-8 pb-12 mb-8 grid items-center justify-center">
       <h3 className="text-2xl mb-8 font-semibold border-b pb-4">{slug ? 'Related News' : 'Last News'}</h3>
       {relatedPosts.map((post, index) => (
         <Link href={`/post/${post.slug}`} key={index} className="group flex flex-col items-center w-full mb-8">

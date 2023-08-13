@@ -44,9 +44,9 @@ async function CategoryPost({params}: {params: Categories}) {
   //{posts: result.postsConnection.edges, authors: result.authors};
 
   return (
-      <div className='container mx-auto px-10 mb-8'>
+      <div className='container mx-auto px-5 mb-8 md:px-10'>
             <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
-                   <div className='col-span-1 lg:col-span-7'>
+                   <div className='col-span-1 lg:col-span-6'>
                          {post.posts.map((posts, i)=>(
                           <>
                              <ListPosts key={i} postList={posts.node}/>
@@ -54,7 +54,7 @@ async function CategoryPost({params}: {params: Categories}) {
                          ))}
                    </div>
                    <div className='col-span-1 lg:col-span-4'>
-                         <div className='relative lg:sticky top-8'>
+                         <div className='relative lg:sticky top-8 lg:ml-32'>
                               <Columnist authors={post.authors}/>
                          </div>
                    </div>

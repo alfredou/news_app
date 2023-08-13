@@ -5,7 +5,7 @@ import { Author } from '@/types'
 async function Columnist({authors}: {authors: Author[]}) {
 
   return (
-    <div className="shadow-md p-3 mt-3 min-w-max">
+    <div className="shadow-md p-2 mt-3 min-w-max">
         <h1 className="border-b-2 text-2xl mb-2 font-semibold">Columnists</h1>
          {authors.length > 0 ? authors.map((author, i)=>(
             <div key={i} className="flex gap-3 mb-2 mt-5">

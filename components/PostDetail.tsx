@@ -88,7 +88,7 @@ const PostDetail = ({ post }: PostDetailsTypes ) => {
     <>
       {/*<Breadcrumbs items={post.categories} slug={post.slug}/>*/}
       <div className="bg-white rounded-lg lg:p-8 pb-12 mb-8 mt-10">
-        <h1 className="mb-5 text-4xl font-bold border-b-2 pb-2">{post.title}</h1>
+        <h1 className="mb-5 text-3xl font-bold border-b-2 pb-2 md:text-4xl">{post.title}</h1>
         <ul className="mb-5 pb-5 border-b-2"><li>{post.excerpt}</li></ul>
         <div className="relative overflow-hidden shadow-md mb-6">
           <Image src={post.featuredImage.url} width={400} height={400} alt={post.slug} loading='lazy' className="object-top h-full w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"/>

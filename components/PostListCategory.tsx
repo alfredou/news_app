@@ -23,7 +23,7 @@ function PostListCategory({slug}: {slug: string}) {
 }, [slug])
  
   return (
-    <div className='flex gap-4 flex-wrap justify-start' ref={lastBookElementRef}>
+    <div className='flex gap-4 flex-wrap justify-center' ref={lastBookElementRef}>
       {categoryPost.map((item)=>{
         return ( <>
              <Link href={`/post/${item.node.slug}`} className='grid gap-3 mb-5 w-60 border-2 rounded' key={item.node.slug}>
