@@ -25,7 +25,7 @@ function Newsletter() {
   const form: any = useRef(null);
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     const template: string = process.env.TEMPLATE!
-    const public_key = process.env.PLUBLIC_KEY
+    const public_key = process.env.PUBLIC_KEY
 
     e.preventDefault();
     setLoading(true)
