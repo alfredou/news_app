@@ -4,8 +4,6 @@ import { Categories } from '@/types'
 import ListPosts from '@/components/ListPosts'
 import Columnist from '@/components/Columnist'
 import { links } from '@/navInfo'
-import { useRouter } from 'next/navigation'
-import Loader from '@/components/Loader'
 /*
 export async function generateMetadata({params}: {params: {slug: string}}){
   try{
