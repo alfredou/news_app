@@ -11,7 +11,7 @@ const getData = async ()=>{
 async function Post() {
     const result: Edges[] = await getData() 
   return (
-    <div className='mt-8 grid gap-3 gap-x-9 justify-center flex-wrap md:grid-cols-custom grid-rows-2'>
+    <div className='grid gap-3 gap-x-9 justify-center flex-wrap md:grid-cols-custom grid-rows-2'>
         {result?.map((post,index)=>{
           return(
             <>

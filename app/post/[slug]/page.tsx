@@ -8,6 +8,7 @@ import PostWidget from '@/components/PostWidget'
 //import CommentsForm from '@/components/CommentsForm'
 import dynamic from 'next/dynamic' // Import the dynamic function
 
+//arreglar los malditos estilos con el zoom al 100% 
 const Comments = dynamic(()=>import('@/components/Comments'))
 const CommentsForm = dynamic(()=>import('@/components/CommentsForm'))
 

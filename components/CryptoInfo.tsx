@@ -38,8 +38,8 @@ function CryptoInfo() {
           {cryptos?.map((item, i)=>{
             return (
                 <div key={i} className="ml-20 flex gap-5 justify-center items-center after:content-['|']">
-                   <Image src={item.image} width={40} height={40} alt={item.name} loading="eager"/>
-                 <h2 className='text-xl'>{item.name}</h2>
+                   <Image src={item.image} width={35} height={35} alt={item.name} loading="eager"/>
+                 <h2 className='text-md'>{item.name}</h2>
                  <span>{item.current_price}</span>
                  <span className={item.price_change_percentage_24h.toString().split('').includes("-") ? "text-red-500" : "text-green-500"}>{item.price_change_percentage_24h}</span>
             </div>

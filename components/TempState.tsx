@@ -29,7 +29,7 @@ function TempState() {
     return (
        <>
             {tempInfo?.map((item)=>{
-              return <div key={item.country} className="px-4 flex gap-x-2 justify-center items-center"> 
+              return <div key={item.country} className="text-sm px-4 flex gap-x-2 justify-center items-center"> 
                            <span>{item.date}</span>
                            <span>{(item.temp - 273.15).toFixed(1)}°C</span>
                            <span>{item.humidity}%</span>

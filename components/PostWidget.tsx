@@ -32,7 +32,7 @@ const PostWidget = ({ categories, slug }: {categories: string[], slug: string}) 
             <Image
               alt={post.title}
               height="100"
-              width="290"
+              width="150"
               unoptimized
               className="align-middle"
               src={post.featuredImage.url}
@@ -41,7 +41,7 @@ const PostWidget = ({ categories, slug }: {categories: string[], slug: string}) 
           </div>
           <div className="flex-grow ml-4 border-b-2 pb-5 w-full">
             <p className="text-left text-gray-500 font-xs">{format(new Date(post.createdAt), 'MM/dd/yyyy')}</p>
-            <h2 className="text-xl w-64 font-bold group-hover:text-blue-600" key={index}>{post.title}</h2>
+            <h2 className="text-md w-44 font-bold group-hover:text-blue-600" key={index}>{post.title}</h2>
           </div>
         </Link>
       ))}

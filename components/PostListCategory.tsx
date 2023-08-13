@@ -23,13 +23,13 @@ function PostListCategory({slug}: {slug: string}) {
 }, [slug])
  
   return (
-    <div className='flex gap-4 flex-wrap justify-center' ref={lastBookElementRef}>
+    <div className='flex gap-4 flex-wrap justify-start' ref={lastBookElementRef}>
       {categoryPost.map((item, i)=>{
         return ( <>
-             <Link href={`/post/${item.node.slug}`} className='grid gap-3 mb-5 w-72 border-2 rounded' key={i}>
-                   <Image className="rounded w-full h-48" src={item.node.featuredImage.url} width={250} height={250} alt={item.node.slug} loading='lazy'></Image>
-                   <h1 className="text-xl w-fit p-2">{item.node.title}</h1>
-                   <h2 className="p-1">{item.node.categories[0].name}</h2>
+             <Link href={`/post/${item.node.slug}`} className='grid gap-3 mb-5 w-60 border-2 rounded' key={i}>
+                   <Image className="rounded w-full h-40" src={item.node.featuredImage.url} width={200} height={230} alt={item.node.slug} loading='lazy'></Image>
+                   <h1 className="font-semibold text-md w-fit p-2">{item.node.title}</h1>
+                   <h2 className="p-1 text-sm">{item.node.categories[0].name}</h2>
              </Link>
         </>)
       })}
