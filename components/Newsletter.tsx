@@ -1,5 +1,5 @@
 "use client"
-import React, { FormEvent, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useState } from 'react'
 import emailjs from '@emailjs/browser';
 
@@ -23,18 +23,20 @@ function Newsletter() {
     }
 */
   const form: any = useRef(null);
-
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+    const template: string = process.env.TEMPLATE!
+    const public_key = process.env.PLUBLIC_KEY
+
     e.preventDefault();
     setLoading(true)
     
-    emailjs.sendForm('service_sari86b', process.env.TEMPLATE, form.current, process.env.PLUBLIC_KEY)
-      .then((result) => {
+    emailjs.sendForm('service_sari86b', template, form.current, public_key)
+      .then((result: any) => {
         if(result.text === 'OK'){
             setLoading(false)
         }
           console.log(result.text);
-      }, (error) => {
+      }, (error: any) => {
           console.log(error.text);
       });
   };
