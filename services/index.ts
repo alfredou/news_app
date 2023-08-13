@@ -217,7 +217,7 @@ export const getCategories = async () => {
 
     return categories;
 };
-//mostrara los post que pertenecen a esa categoria cuando entre en esa categoria
+
 export const getCategoryPost = async (slug: string, limit: number) => {
   const query = gql`
   query GetCategoryPost($slug: String!, $limit: Int) {

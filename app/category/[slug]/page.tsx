@@ -4,7 +4,7 @@ import { Categories } from '@/types'
 import ListPosts from '@/components/ListPosts'
 import Columnist from '@/components/Columnist'
 import { links } from '@/navInfo'
-/*
+
 export async function generateMetadata({params}: {params: {slug: string}}){
   try{
     if(!params){
@@ -14,8 +14,8 @@ export async function generateMetadata({params}: {params: {slug: string}}){
       }
     }
     return {
-      title: params?.slug,
-      description: `This is the description for ${params?.slug}`
+      title: params.slug,
+      description: `This is the description for ${params.slug}`
     }
   }catch(e){
     console.log(e)
@@ -25,7 +25,7 @@ export async function generateMetadata({params}: {params: {slug: string}}){
     }
   }
 }
-*/
+
 
 export async function generateStaticParams(){
   //const categories = await getCategories();
