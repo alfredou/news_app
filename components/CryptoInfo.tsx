@@ -30,12 +30,12 @@ const fetcher = (url: string)=> axios(url).then(res=>{
 
 function CryptoInfo() {
      
-  const {data: cryptos, isLoading, error} = useSWR(process.env.NEXT_PUBLIC_CRYPTOINFO_URL, fetcher)
+  const {data, isLoading, error} = useSWR(process.env.NEXT_PUBLIC_CRYPTOINFO_URL, fetcher)
   
   return (
     <div className='mx-7 flex border-2 border-gray-400 mt-2 gap-1 overflow-hidden'>
         <div className='animate-crypto duration-10000 flex '>
-          {!isLoading && cryptos?.map((item, i)=>{
+          {!isLoading && data?.map((item, i)=>{
             return (
               <div data-testid={`crypto-${i}`} key={i} className="ml-20 flex gap-5 justify-center items-center after:content-['|']">
                    <Image src={item.image} width={35} height={35} alt={item.name} loading="eager"/>
