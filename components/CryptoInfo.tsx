@@ -35,7 +35,7 @@ function CryptoInfo() {
   return (
     <div className='mx-7 flex border-2 border-gray-400 mt-2 gap-1 overflow-hidden'>
         <div className='animate-crypto duration-10000 flex '>
-          {cryptos?.map((item, i)=>{
+          {!isLoading && cryptos?.map((item, i)=>{
             return (
               <div data-testid={`crypto-${i}`} key={i} className="ml-20 flex gap-5 justify-center items-center after:content-['|']">
                    <Image src={item.image} width={35} height={35} alt={item.name} loading="eager"/>
