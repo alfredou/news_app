@@ -29,7 +29,8 @@ function TempState() {
 
     const urlWeather = `${process.env.NEXT_PUBLIC_URLWEATHER}&lang=es&q=${location && location.city || 'santo domingo'}`;
 
-    const {data: tempInfo, isLoading, error} = useSWR(urlWeather, fetcher)    
+    const newUrlWeather = process.env.NEXT_PUBLIC_URLWEATHER && urlWeather 
+    const {data: tempInfo, isLoading, error} = useSWR(newUrlWeather, fetcher)    
 
     const handleLocationUpdate = (locationData: LocationData) => {
         setLocation(locationData);
