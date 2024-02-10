@@ -1,15 +1,17 @@
 "use client"
-import React from 'react'
+import React, {useState} from 'react'
 import { WeatherTypes } from '@/types'
 import useSWR from 'swr'
 import axios from 'axios'
 import Image from 'next/image'
+import GeoLocation from './Geolocation'
+import { LocationData } from '@/types'
 
 const fetcher = (urlWeather: string)=>{
     const currentDate = new Date()
     return axios(urlWeather).then(res=>{
         if(res.data){
-           const iconBaseUrl: string = `http://openweathermap.org/img/wn/`
+           const iconBaseUrl: string | undefined = process.env.NEXT_PUBLIC_ICONBASEURL
            const weatherObj: WeatherTypes[] = [{
                temp: res.data.main.temp,
                humidity: res.data.main.humidity,
@@ -23,11 +25,20 @@ const fetcher = (urlWeather: string)=>{
  })}
 
 function TempState() {
-    const urlWeather = "https://api.openweathermap.org/data/2.5/weather?appid=d6e926720c8d149b73f2341eb88e50a8&lang=es&q=santo domingo"
+    const [location, setLocation] = useState<LocationData | null>(null);
+
+    const urlWeather = `${process.env.NEXT_PUBLIC_URLWEATHER}&lang=es&q=${location?.city || 'santo domingo'}`;
+
     const {data: tempInfo, isLoading, error} = useSWR(urlWeather, fetcher)    
+
+    const handleLocationUpdate = (locationData: LocationData) => {
+        setLocation(locationData);
+      };
     
     return (
        <>
+            <GeoLocation onLocationUpdate={handleLocationUpdate} />
+
             {tempInfo?.map((item)=>{
               return <div key={item.country} className="text-sm px-4 flex gap-x-2 justify-center items-center"> 
                            <span>{item.date}</span>

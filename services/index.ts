@@ -12,7 +12,6 @@ export const getPosts = async (limit?: number): Promise<Array<Edges>> => {
         last: $limit
       ){
         edges {
-          cursor
           node {
             author {
               bio
@@ -55,10 +54,12 @@ export const getPosts = async (limit?: number): Promise<Array<Edges>> => {
         variables
       })
     })
-    const result = await res.json()
-    const {postsConnection} = result.data as PostTypes
+    
 
-    return postsConnection.edges
+      const result = await res.json()
+      const {postsConnection} = result.data as PostTypes
+      
+      return postsConnection.edges
 }
 
 
@@ -74,6 +75,7 @@ export const getPostDetails = async (slug: string) => {
         author{
           name
           bio
+          id
           photo {
             url
           }
@@ -108,9 +110,9 @@ export const getPostDetails = async (slug: string) => {
       })
   })
 
-  const result = await res.json()
-  const resultingData = result.data as PostDetailsTypes
-  return resultingData.post;
+    const result = await res.json()
+    const resultingData = result.data as PostDetailsTypes
+    return resultingData.post;
 };
 
 export const getSimilarPosts = async (slug: string, categories: string[]) => {
@@ -131,7 +133,7 @@ export const getSimilarPosts = async (slug: string, categories: string[]) => {
   `;
   const result = await request<PostList>(graphqlAPI, query, {slug, categories});
   
-  return result.posts;
+  return result;
 };
 
 
@@ -188,7 +190,7 @@ export const getRecentPosts = async () => {
   `;
   const result = await request<PostList>(graphqlAPI, query);
 
-  return result.posts
+  return result
 };
 
 export const getCategories = async () => {
@@ -223,7 +225,6 @@ export const getCategoryPost = async (slug: string, limit: number) => {
   query GetCategoryPost($slug: String!, $limit: Int) {
     postsConnection(where: {categories_some: {slug: $slug}}, first: $limit) {
       edges {
-        cursor
         node {
           author {
             bio

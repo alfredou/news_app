@@ -54,7 +54,6 @@ const PostDetail = ({ post }: PostDetailsTypes ) => {
         modifiedText = (<u key={index}>{text}</u>);
       }
     }
- //devuelve el texto conforme el tipo que se le envie
 
   const showItems = ()=>{
     if(Array.isArray(modifiedText)){
@@ -86,7 +85,6 @@ const PostDetail = ({ post }: PostDetailsTypes ) => {
 
   return (
     <>
-      {/*<Breadcrumbs items={post.categories} slug={post.slug}/>*/}
       <div className="bg-white rounded-lg lg:p-8 pb-12 mb-8 mt-10">
         <h1 className="mb-5 text-3xl font-bold border-b-2 pb-2 md:text-4xl">{post.title}</h1>
         <ul className="mb-5 pb-5 border-b-2"><li>{post.excerpt}</li></ul>
@@ -115,11 +113,9 @@ const PostDetail = ({ post }: PostDetailsTypes ) => {
          </div>
             <div className='flex items-center justify-around mb-8 w-full border-b-2 pb-2'>
                 <div className="flex w-full justify-evenly mt-10 text-xl">
-                     <Link href="https://www.facebook.com/" className="hover:-translate-y-1 cursor-pointer">{social[0].facebookIcon}</Link>        
-                     <Link href="https://www.twitter.com/" className="hover:-translate-y-1 cursor-pointer">{social[1].twitterIcon}</Link>        
-                     <Link href="https://www.instagram.com/" className="hover:-translate-y-1 cursor-pointer">{social[2].instagramIcon}</Link>        
-                     <Link href="https://www.youtube.com/" className="hover:-translate-y-1 cursor-pointer">{social[3].youtubeIcon}</Link>        
-                     <Link href="https://www.linkedin.com/" className="hover:-translate-y-1 cursor-pointer">{social[4].linkedinIcon}</Link>        
+                    {social.map((links, i)=>{
+                        return <Link key={i} href={links.url} className="hover:-translate-y-1 cursor-pointer">{links.icon}</Link>        
+                    })}                    
                 </div>
             </div>
           {post.content.raw.children.map((typeObj, index) => {

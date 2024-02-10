@@ -23,7 +23,7 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts", ".next/types/**/*.ts", "components/useNearScreen.js", "app/api/comments.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types.d.ts", ".next/types/**/*.ts", "components/useNearScreen.js", "app/api/comments.js", "jest.config.js", "jest.setup.js", "__tests__/navbar.test.tsx", "mocks/cryptoMock.ts"],
   "exclude": ["node_modules"]
 }
 

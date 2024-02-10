@@ -9,15 +9,24 @@ import { Post } from '@/types';
 const PostWidget = ({ categories, slug }: {categories: string[], slug: string}) => {
   const [relatedPosts, setRelatedPosts] = useState<Post[]>([]);
 
+  const getSimilarP = async ()=>{
+    const postSimilar = await getSimilarPosts(slug, categories)
+    if(postSimilar){
+      setRelatedPosts(postSimilar.posts)
+    }
+  }
+  const getRecentP = async ()=>{
+    const postRecent = await getRecentPosts()
+    if(postRecent){
+      setRelatedPosts(postRecent.posts)
+    }
+  }
+
   useEffect(() => {
     if (slug) {
-      getSimilarPosts(slug, categories).then((result) => {
-        setRelatedPosts(result);
-          });
+      getSimilarP()
     } else {
-      getRecentPosts().then((result) => {
-        setRelatedPosts(result);
-      });
+      getRecentP()
     }
 
   }, [slug]);
@@ -26,7 +35,7 @@ const PostWidget = ({ categories, slug }: {categories: string[], slug: string}) 
   return (
     <div className="bg-white rounded-lg p-8 pb-12 mb-8 grid items-center justify-center">
       <h3 className="text-2xl mb-8 font-semibold border-b pb-4">{slug ? 'Related News' : 'Last News'}</h3>
-      {relatedPosts.map((post, index) => (
+      {relatedPosts.length != 0 && relatedPosts.map((post, index) => (
         <Link href={`/post/${post.slug}`} key={index} className="group flex flex-col items-center w-full mb-8">
           <div className="flex-none w-full">
             <Image

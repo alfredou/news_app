@@ -3,13 +3,7 @@ import React, { useRef } from 'react'
 import { useState } from 'react'
 import emailjs from '@emailjs/browser';
 
-/*
-interface userDataTypes {
-    user_name: string
-    user_lastname: string
-    user_email: string
-}
-*/
+
 function Newsletter() {
     //const [userData, setUserData] = useState<userDataTypes>({user_name: '', user_lastname: '', user_email: '' })
     const [loading, setLoading] = useState<boolean>(false)
@@ -45,24 +39,7 @@ function Newsletter() {
       });
   };
 
-   /*
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
-         e.preventDefault()
-         const ruta = "/api/newsletter"
-         fetch(ruta, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify(userData)
-         }).then((res)=>{
-            if(res){
-                console.log("res", res)
-            }
-         })
-    }
-*/
+
   return (
           <div className='flex flex-col gap-7 pb-5'>
                <h2 className='text-2xl font-bold'>Newsletter</h2>

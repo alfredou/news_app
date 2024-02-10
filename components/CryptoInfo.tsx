@@ -7,6 +7,7 @@ import useSWR from 'swr';
 
 const fetcher = (url: string)=> axios(url).then(res=>{
   if(res.data){
+
     const resultingArray: CryptoTypes[] = res.data.map((item: ApiResponse): CryptoTypes =>{
 
         const cryptoObj: CryptoTypes = {
@@ -28,16 +29,15 @@ const fetcher = (url: string)=> axios(url).then(res=>{
 })
 
 function CryptoInfo() {
-     const url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=12&page=1&sparkline=false&locale=en"
-   
-     const {data: cryptos, isLoading, error} = useSWR(url, fetcher)
-
+     
+  const {data: cryptos, isLoading, error} = useSWR(process.env.NEXT_PUBLIC_CRYPTOINFO_URL, fetcher)
+  
   return (
     <div className='mx-7 flex border-2 border-gray-400 mt-2 gap-1 overflow-hidden'>
         <div className='animate-crypto duration-10000 flex '>
           {cryptos?.map((item, i)=>{
             return (
-                <div key={i} className="ml-20 flex gap-5 justify-center items-center after:content-['|']">
+              <div data-testid={`crypto-${i}`} key={i} className="ml-20 flex gap-5 justify-center items-center after:content-['|']">
                    <Image src={item.image} width={35} height={35} alt={item.name} loading="eager"/>
                  <h2 className='text-md'>{item.name}</h2>
                  <span>{item.current_price}</span>

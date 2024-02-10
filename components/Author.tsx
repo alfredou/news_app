@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { Author } from '@/types';
+import { newAuthor } from '@/types';
 
-const Author = ({ author }: {author: Author}) => (
+const Author = ({ author }: {author: newAuthor}) => (
   <div className="flex text-center gap-5 mt-20 mb-8 p-6 relative rounded-lg bg-white shadow-md bg-opacity-40">
     <div className="flex w-44">
       <Image

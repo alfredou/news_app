@@ -61,6 +61,8 @@ interface Author {
   category: Categories
 }
 
+type newAuthor = Omit<Author, "category">
+
 export type PostAuthorsTypes = {
   postsConnection: {
       edges: Array<Edges>
@@ -82,8 +84,8 @@ interface RawContent{
 }
 
 interface PostData {
-  author: Author,
-  createdAt: Date,
+  author: newAuthor,
+  createdAt: Date | string,
   slug: string,
   title: string,
   excerpt: string,
@@ -136,3 +138,11 @@ export interface Post {
 export interface PostList {
   posts: Post[]
 }
+
+export interface LocationData {
+  city: string;
+  country: string;
+}
+
+
+

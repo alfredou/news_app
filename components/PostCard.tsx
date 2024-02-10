@@ -7,8 +7,8 @@ import Link from 'next/link'
 function PostCard({post, index}: {post: Edges, index: number}) {
 
   return (
-    <Link href={`/post/${post.node.slug}`} style={{backgroundImage: (index === 0 && post.node.featuredImage.url) ? `url(${post.node.featuredImage.url})` : ``, backgroundSize: 'cover'}} className={index === 0 ? 'group m-7 h-80 p-1 rounded inline-grid gap-2 cursor-pointer shadow-lg md:row-span-2 md:h-[800px] md:w-[320px] xl:w-[380px]': `group m-7 w-min p-1 rounded inline-grid gap-2 cursor-pointer shadow-lg`}>
-          <Image className={index === 0 ? `hidden rounded cover w-full h-48 group-hover:opacity-80 max-w-md` : `rounded cover w-full h-44 group-hover:opacity-80 max-w-sm`} src={index===0 ? "" : post.node.featuredImage.url} alt={post.node.title} width={180} height={180} loading="lazy"/>
+    <Link data-testid={`post-${index}`} href={`/post/${post.node.slug}`} style={{backgroundImage: (index === 0 && post.node.featuredImage.url) ? `url(${post.node.featuredImage.url})` : ``, backgroundSize: 'cover'}} className={index === 0 ? 'group m-7 h-80 p-1 rounded inline-grid gap-2 cursor-pointer shadow-lg md:row-span-2 md:h-[800px] md:w-[320px] xl:w-[380px]': `group m-7 w-min p-1 rounded inline-grid gap-2 cursor-pointer shadow-lg`}>
+          <Image className={index === 0 ? `hidden rounded cover w-full h-48 group-hover:opacity-80 max-w-md` : `rounded cover w-full h-44 group-hover:opacity-80 max-w-sm`} src={index===0 ? "/null" : post.node.featuredImage.url} alt={post.node.title} width={180} height={180} loading="lazy"/>
           <div className={index === 0 ? 'p-1 flex flex-col text-white items-center justify-center text-center' : 'p-1 flex flex-col'}>
              <h1 className={index === 0 ? 'text-md opacity-75 font-bold' : 'text-sm opacity-75 font-bold'}>{post.node.categories[0]?.name}</h1>
              <h1 className={index === 0 ? 'text-3xl w-72 font-bold group-hover:text-cyan-600' : 'text-xl w-72 font-bold group-hover:text-cyan-600'}>{post.node.title}</h1>
