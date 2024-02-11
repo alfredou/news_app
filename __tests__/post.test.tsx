@@ -18,8 +18,8 @@ it('check if all the post are rendered', async ()=>{
   //(global.fetch as jest.Mock).mockResolvedValueOnce(posts)
       render(<Post />);
 
-    await waitFor(async () => {
-      await new Promise(async ()=>{
+    await waitFor(() => {
+      new Promise(async ()=>{
         const post = await screen.findAllByTestId(/post/i);
         expect(post.length).toBe(posts.length);
       })

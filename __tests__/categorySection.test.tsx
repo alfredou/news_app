@@ -1,15 +1,8 @@
 import { screen, render, waitFor, act } from "@testing-library/react";
 import { links } from "@/navInfo";
 import CategorySection from "@/components/CategorySection";
-
-/*import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom/extend-expect';
 import PostListCategory from "@/components/PostListCategory";
-import { getCategoryPost } from '@/services'; // Asumiendo que este es tu servicio para obtener datos
-jest.mock('../services/index.ts', () => ({
-  getCategoryPost: jest.fn().mockResolvedValue({ posts: [{ node: { slug: 'test-slug', featuredImage: { url: 'test-url' }, title: 'Test Title', categories: [{ name: 'Test Category' }] } }] })
-}));
-*/
+import { presentPostsMock } from "@/mocks/presentPostsMock";
 
 
 class IntersectionObserverMock implements IntersectionObserver {
@@ -33,8 +26,8 @@ class IntersectionObserverMock implements IntersectionObserver {
   (window as any).IntersectionObserver = IntersectionObserverMock;
   
 
-describe.skip("CategorySection", () => {
-    it("renders category sections correctly", async () => {
+describe("test the CategorySection and PostlistCategory components", () => {
+    it("test if all the titles of the categorySection component are rendered", async () => {
       render(<CategorySection />);
       
       await act(async () => {
@@ -45,30 +38,20 @@ describe.skip("CategorySection", () => {
       expect(categoryTitles).toHaveLength(links.length);
     });
 
-    afterEach(() => {
-      jest.clearAllMocks();
-    });
-  });
-
-
-/*describe('PostListCategory', () => {
-  it('renders category posts correctly', async () => {
+  it('test if the post title and category name are rendered in the screen', async () => {
     render(<PostListCategory slug="Present" />);
 
-    // Simula la intersección observada (supongamos que el elemento es visible en la pantalla)
-    const divElement = screen.getByTestId('test-element');
-    const observerCallback = divElement?.getBoundingClientRect().top;
-    window.IntersectionObserver.prototype.observe = jest.fn().mockImplementation((_, options) => {
-      options({ isIntersecting: true, boundingClientRect: { top: observerCallback } });
-    });
+    await waitFor(() => {
+      new Promise(async ()=>{
+        const categoryTitles = await screen.findAllByRole('heading', { level: 1 });
+        const categoryPostName = await screen.findAllByRole('heading', { level: 2 });
+        expect(categoryTitles).toHaveLength(presentPostsMock.slice(0,3).length)  
+        expect(categoryPostName).toHaveLength(presentPostsMock.slice(0,3).length)      
+         })
+      });
+   });
 
-    // Espera a que se carguen los datos de la categoría
-    await waitFor(() => expect(getCategoryPost).toHaveBeenCalled());
-
-    // Verifica que los elementos de la categoría se rendericen correctamente
-    expect(screen.getByText('Test Title')).toBeInTheDocument();
-    expect(screen.getByText('Test Category')).toBeInTheDocument();
-    expect(screen.getByAltText('Test Title')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /test title/i })).toHaveAttribute('href', '/post/test-slug');
-  });
-});*/
+  afterEach(() => {
+     jest.clearAllMocks();
+   });
+});

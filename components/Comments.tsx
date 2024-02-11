@@ -11,7 +11,9 @@ const Comments = ({ slug }: {slug: string}) => {
 
   useEffect(() => {
     getComments(slug).then((result) => {
-        setComments(result);
+      if(result){
+          setComments(result.comments);
+      }
     });
   }, [slug]);
 
@@ -24,8 +26,8 @@ const Comments = ({ slug }: {slug: string}) => {
             {' '}
             Comments
           </h3>
-            {comments.map((comment, index) => (
-              <div key={index} className="border-b border-gray-100 mb-4 pb-4">
+            {comments && comments.map((comment, index) => (
+              <div data-testid={`comments-${index}`} key={index} className="border-b border-gray-100 mb-4 pb-4">
                 <p className="mb-4">
                   <span className="font-semibold">{comment.name}</span>
                   {' '}

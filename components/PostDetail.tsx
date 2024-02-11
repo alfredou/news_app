@@ -114,7 +114,7 @@ const PostDetail = ({ post }: PostDetailsTypes ) => {
             <div className='flex items-center justify-around mb-8 w-full border-b-2 pb-2'>
                 <div className="flex w-full justify-evenly mt-10 text-xl">
                     {social.map((links, i)=>{
-                        return <Link key={i} href={links.url} className="hover:-translate-y-1 cursor-pointer">{links.icon}</Link>        
+                        return <Link data-testid={`social-${i}`} key={i} href={links.url} className="hover:-translate-y-1 cursor-pointer">{links.icon}</Link>        
                     })}                    
                 </div>
             </div>

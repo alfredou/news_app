@@ -98,7 +98,7 @@ interface PostData {
 
 interface Comments {
     name: string,
-    createdAt: Date,
+    createdAt: Date | string,
     comment: string
 }
 

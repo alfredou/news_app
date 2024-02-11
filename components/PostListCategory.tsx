@@ -14,17 +14,18 @@ function PostListCategory({slug}: {slug: string}) {
     if(observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver(entries=>{
         if(entries[0].isIntersecting){
-            getCategoryPost(slug, 3).then(res=> setCategoryPost(res.posts))
+            getCategoryPost(slug, 3).then(res=> {
+              setCategoryPost(res.posts)
+            })
             if(node) observer.current?.unobserve(node); // Stop observing
         }
     })
     if(node) observer.current.observe(node)
 }, [slug])
  
-console.log(categoryPost)
 
   return (
-    <div data-testid={`test-element`} className='flex gap-4 flex-wrap justify-center' ref={lastBookElementRef}>
+    <div className='flex gap-4 flex-wrap justify-center' ref={lastBookElementRef}>
       {categoryPost.map((item)=>{
         return ( <React.Fragment key={item.node.slug}>
              <Link href={`/post/${item.node.slug}`} className='grid gap-3 mb-5 w-60 border-2 rounded'>

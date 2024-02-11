@@ -4,6 +4,7 @@ import { Categories } from '@/types'
 import ListPosts from '@/components/ListPosts'
 import Columnist from '@/components/Columnist'
 import { links } from '@/navInfo'
+import CategoryPostList from '@/components/CategoryPostList'
 
 export async function generateMetadata({params}: {params: {slug: string}}){
   try{
@@ -47,11 +48,7 @@ async function CategoryPost({params}: {params: Categories}) {
       <div className='container mx-auto px-5 mb-8 md:px-10'>
             <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
                    <div className='col-span-1 lg:col-span-6'>
-                         {post.posts.map((posts, i)=>(
-                          <>
-                             <ListPosts key={i} postList={posts.node}/>
-                          </>
-                         ))}
+                           <CategoryPostList post={post.posts}/>
                    </div>
                    <div className='col-span-1 lg:col-span-4'>
                          <div className='relative lg:sticky top-8 lg:ml-32'>
