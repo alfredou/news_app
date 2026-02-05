@@ -1,10 +1,10 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import Navbar from '@/components/Navbar'
+import Navbar from '../components/Navbar'
 //import Footer from '@/components/Footer'
 import dynamic from 'next/dynamic' // Import the dynamic function
 
-const Footer = dynamic(()=>import('@/components/Footer'))
+const Footer = dynamic(()=>import('../components/Footer'))
 
 
 export const metadata: Metadata = {
