@@ -1,6 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/navbar'
 //import Footer from '@/components/Footer'
 import dynamic from 'next/dynamic' // Import the dynamic function
 
