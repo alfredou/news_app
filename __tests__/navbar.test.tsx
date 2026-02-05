@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '@/components/navbar';
+import Navbar from '@/components/Navbar';
 import Burger from '@/components/Burger';
 import NavMenuPortal from '@/components/NavbarMenu';
 import PortalChildMenu from '@/components/PortalChildMenu';
