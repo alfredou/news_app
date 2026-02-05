@@ -91,25 +91,27 @@ const CommentsForm: React.FC<SlugType> = ({ slug }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg p-8 pb-12 mb-8">
-      <h3 className="text-xl mb-8 font-semibold border-b pb-4">Leave a Reply</h3>
+    <div className="bg-white rounded-lg p-8 pb-12 mb-8 shadow-sm">
+      <h3 className="text-xl mb-6 font-semibold border-b pb-4 text-primary">Leave a Reply</h3>
       <div className="grid grid-cols-1 gap-4 mb-4">
-        <textarea value={formData.comment} onChange={onInputChange} className="p-4 outline-none w-full rounded-lg h-40 focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700" name="comment" placeholder="Comment" />
+        <textarea value={formData.comment} onChange={onInputChange} className="p-4 outline-none w-full rounded-lg h-40 focus:ring-2 focus:ring-primary bg-gray-50 text-black placeholder:text-muted" name="comment" placeholder="Comment" />
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-        <input type="text" value={formData.name} onChange={onInputChange} className="py-2 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700" placeholder="Name" name="name" />
-        <input type="email" value={formData.email} onChange={onInputChange} className="py-2 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700" placeholder="Email" name="email" />
+        <input type="text" value={formData.name} onChange={onInputChange} className="py-2 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-primary bg-gray-50 text-black placeholder:text-muted" placeholder="Name" name="name" />
+        <input type="email" value={formData.email} onChange={onInputChange} className="py-2 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-primary bg-gray-50 text-black placeholder:text-muted" placeholder="Email" name="email" />
       </div>
       <div className="grid grid-cols-1 gap-4 mb-4">
-        <div>
-          <input checked={typeof formData.storeData === "boolean" ? formData?.storeData : false} onChange={onInputChange} type="checkbox" id="storeData" name="storeData" value="true" />
-          <label className="text-gray-500 cursor-pointer" htmlFor="storeData"> Save my name, email in this browser for the next time I comment.</label>
-        </div>
+        <label htmlFor="storeData" className="flex items-center gap-3 cursor-pointer select-none">
+          <input checked={typeof formData.storeData === "boolean" ? formData?.storeData : false} onChange={onInputChange} type="checkbox" id="storeData" name="storeData" value="true" className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" />
+          <span className="text-sm text-muted">Save my name and email in this browser for the next time I comment.</span>
+        </label>
       </div>
       {error && <p className="text-xs text-red-500">All fields are mandatory</p>}
-      <div className="mt-8">
-        <button type="button" onClick={handlePostSubmission} className="transition duration-500 ease hover:bg-blue-900 inline-block bg-blue-600 text-lg font-medium rounded-md text-white px-4 py-3 cursor-pointer">Send Comment</button>
-        {showSuccessMessage && <span className="text-xl float-right font-semibold mt-3 text-green-500">Comment submitted for review</span>}
+      <div className="mt-8 flex items-center gap-4">
+        <button type="button" onClick={handlePostSubmission} className={`inline-flex items-center gap-3 px-5 py-2 rounded-md text-white font-medium shadow-sm transition ${/* loading not applicable here but keep style */ 'bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary'}`}>
+          Send Comment
+        </button>
+        {showSuccessMessage && <span className="text-sm font-semibold mt-1 text-green-600">Comment submitted for review</span>}
       </div>
     </div>
   );

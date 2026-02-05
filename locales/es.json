@@ -1,0 +1,37 @@
+{
+  "site": { "title": "PCInfo News" },
+  "nav": {
+    "home": "Inicio",
+    "present": "Actualidad",
+    "world": "Mundo",
+    "economy": "Economía",
+    "sports": "Deportes",
+    "lastNews": "Últimas noticias"
+  },
+  "columnist": { "title": "Columnistas" },
+  "newsletter": {
+    "subscribe": "Suscríbete a nuestra Newsletter",
+    "placeholder": "tu@correo.com",
+    "success": "¡Suscripción exitosa ✔️",
+    "subscribing": "Enviando...",
+    "subscribe_cta": "Subscribirme"
+  },
+  "postWidget": { "related": "Noticias relacionadas", "last": "Últimas noticias" },
+  "post": { "read": "Leer", "published": "Publicado" },
+  "loading": "Cargando...",
+  "crypto": { "error": "Error al cargar datos de criptomonedas", "loading": "Cargando criptomonedas...", "volume": "Vol" },
+  "search": "Buscar",
+  "showMore": "Mostrar más",
+  "comments": { "title": "{count} Comentarios", "submitted": "Comentario enviado para revisión" },
+  "commentsForm": {
+    "leaveReply": "Deja una respuesta",
+    "commentPlaceholder": "Comentario",
+    "name": "Nombre",
+    "email": "Email",
+    "saveData": "Guardar mi nombre y correo en este navegador para la próxima vez",
+    "allFields": "Todos los campos son obligatorios",
+    "send": "Enviar comentario",
+    "success": "Comentario enviado para revisión"
+  },
+  "footer": { "copyright": "© {year} PCInfo News — Todos los derechos reservados" }
+}

@@ -11,13 +11,13 @@ const fetcher = (urlWeather: string)=>{
     const currentDate = new Date()
     return axios(urlWeather).then(res=>{
         if(res.data){
-           const iconBaseUrl: string | undefined = process.env.NEXT_PUBLIC_ICONBASEURL
+       const iconBaseUrl: string = process.env.NEXT_PUBLIC_ICONBASEURL || 'http://openweathermap.org/img/wn/'
            const weatherObj: WeatherTypes[] = [{
                temp: res.data.main.temp,
                humidity: res.data.main.humidity,
                country: res.data.sys.country,
                main: res.data.weather[0].main,
-               icon: `${iconBaseUrl}${res.data.weather[0].icon}@2x.png`,
+         icon: `${iconBaseUrl}${res.data.weather[0].icon}@2x.png`,
                date: currentDate.toLocaleDateString()
             }]
         return weatherObj
@@ -46,7 +46,9 @@ function TempState() {
                            <span>{(item.temp - 273.15).toFixed(1)}°C</span>
                            <span>{item.humidity}%</span>
                            <span>{item.country}</span>
-                           <Image src={item.icon} width={40} height={40} alt={item?.country} loading="lazy"/>
+                           {item.icon ? (
+                             <Image src={item.icon} width={40} height={40} alt={item?.country} loading="lazy"/>
+                           ) : null}
                            <span>{item.main}</span>   
                       </div>
             })}               

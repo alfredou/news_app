@@ -5,21 +5,27 @@ import { Author } from '@/types'
 function Columnist({authors}: {authors: Author[]}) {
 
   return (
-    <div className="shadow-md p-2 mt-3 min-w-max">
-        <h1 className="border-b-2 text-2xl mb-2 font-semibold">Columnists</h1>
-         {authors.length > 0 ? authors.map((author, i)=>(
-            <div data-testid={`columnist-${i}`} key={i} className="flex gap-3 mb-2 mt-5">
-                <div className="flex justify-center items-center object-cover">
-                  <Image className="rounded-full w-14 h-14" src={author.photo.url} width={55} height={50} alt={author.name} loading="lazy"/>
+    <aside className="bg-white border border-gray-100 rounded-md p-6 mt-6 w-full">
+        <h2 className="text-lg font-semibold text-primary mb-4">Columnists</h2>
+         {Array.isArray(authors) && authors.length > 0 ? authors.map((author, i)=>(
+            <div data-testid={`columnist-${i}`} key={author.name || i} className="flex gap-4 mb-4 items-start p-2 rounded-sm">
+                <div className="flex-none w-14 h-14 relative rounded-full overflow-hidden ring-1 ring-gray-200">
+                  {author.photo?.url ? (
+                    <Image src={author.photo.url} alt={author.name} fill className="object-cover" sizes="56px" loading="lazy"/>
+                  ) : (
+                    <div className="w-full h-full bg-primary/10" />
+                  )}
                 </div>
-                 <div>
-                     <h2 className="font-semibold text-lg">{author.category.name.toUpperCase()}</h2>
-                     <h2 className="text-lg font-semibold">{author.name}</h2>
-                     <h3 className="text-md">{author.bio}</h3>
+                 <div className="flex-1">
+                     <div className="flex items-center gap-3 mb-1">
+                       <span className="text-xs font-medium bg-primary/5 text-primary px-2 py-0.5 rounded">{author.category?.name}</span>
+                       <h3 className="text-sm font-semibold text-slate-900">{author.name}</h3>
+                     </div>
+                     <p className="text-sm text-slate-600 leading-snug mt-1" style={{display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden'}}>{author.bio}</p>
                  </div>
             </div>
-         )) : "loading"} 
-    </div>
+         )) : <div className="text-sm text-slate-500">Loading...</div>} 
+    </aside>
   )
 }
 

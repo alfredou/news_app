@@ -10,32 +10,32 @@ function ListPosts({postList}:{ postList: newPostData}) {
   return (
     <>
   <Link href={`/post/${postList.slug}`}>
-    <div className="cursor-pointer bg-white rounded-lg lg:p-8 pb-12 mb-8 mt-10 shadow-xl max-w-xl">
-      <div className="relative overflow-hidden shadow-md mb-6">
-        <Image src={postList.featuredImage.url} alt={postList.slug} width={400} height={400} loading="lazy" className="object-top h-full w-full object-cover  shadow-lg rounded-t-lg lg:rounded-lg" />
+    <div className="cursor-pointer bg-white rounded-lg lg:p-6 pb-8 mb-8 mt-10 shadow-xl max-w-xl hover:shadow-2xl transition-shadow duration-200">
+      <div className="relative overflow-hidden mb-4 h-56 sm:h-72 lg:h-80 rounded-lg">
+        <Image src={postList.featuredImage.url} alt={postList.slug} fill sizes="(max-width: 768px) 100vw, 400px" loading="lazy" className="object-cover shadow-md rounded-lg" />
       </div>
-      <h1 className="text-center mb-5 font-bold border-b-2 pb-2 text-2xl sm:text-3xl md:text-3xl">{postList.title}</h1>
+      <h2 className="text-center mb-3 font-extrabold text-2xl sm:text-3xl text-primary leading-tight">{postList.title}</h2>
       <div className="px-4 lg:px-0">
-        <div className="flex items-center justify-around w-full border-b-2 pb-2">
-          <div className="hidden md:flex items-center justify-center lg:mb-0 lg:w-auto mr-8">
+        <div className="flex items-center justify-between w-full border-b-2 pb-3 mb-4">
+          <div className="flex items-center">
             <Image
               alt={postList.author.name}
-              height={30}
-              width={30}
+              height={36}
+              width={36}
               src={postList.author.photo.url}
               loading='lazy'
-              className="align-middle rounded-full"
+              className="rounded-full"
             />
-            <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">{postList.author.name}</p>
+            <p className="text-sm text-slate-800 ml-3 font-medium">{postList.author.name}</p>
           </div>
-          <div className="font-medium text-gray-700">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="text-sm text-muted">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
             <span className="align-middle">{format(new Date(postList.createdAt), 'MM/dd/yyyy')}</span>
           </div>
        </div>
-           <ul className="mt-5 mb-5 pb-5 text-ellipsis"><li>{postList.excerpt}</li></ul> 
+           <p className="mt-2 mb-2 text-gray-800" style={{display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden'}}>{postList.excerpt}</p>
       </div>
     </div>
   </Link>

@@ -18,11 +18,13 @@ function NavbarMenu({ children, handleShowPortal, showPortal }: Props) {
         }
      }
 
-  return <div data-testid="navbar-menu" id="containerRelative" onClick={handleCloseModal} tabIndex={1} className={ showPortal ? "transition ease-in-out delay-50 duration-300 fixed w-full top-0 h-screen z-40 bg-black/20" : "transition ease-in-out delay-50 duration-300"}>
-        <div className={showPortal ? "transition ease-in-out delay-300 duration-300 absolute px-3 py-5 w-1/2 bg-white h-screen z-50 left-0 top-0 sm:w-1/3 md:w-1/3" : "transition ease-in-out delay-300 duration-300 absolute px-3 py-5 w-1/2 bg-white h-screen z-50 -left-full top-0 sm:w-1/3 md:w-1/3"}>
-              {children}
-        </div>
-  </div>
+  return (
+    <div data-testid="navbar-menu" id="containerRelative" onClick={handleCloseModal} tabIndex={1} className={`fixed inset-0 z-40 transition-opacity transition-colors duration-300 ${showPortal ? 'opacity-100 pointer-events-auto bg-black/20' : 'opacity-0 pointer-events-none'}`}>
+      <div className={`absolute top-0 left-0 h-screen z-50 bg-white px-3 py-5 w-1/2 sm:w-1/3 md:w-1/3 transform transition-transform duration-300 ${showPortal ? 'translate-x-0' : '-translate-x-full'}`}>
+        {children}
+      </div>
+    </div>
+  )
 }
 
 const NavMenuPortal = ({ children, handleShowPortal, showPortal }: Props) => {
@@ -38,15 +40,13 @@ const NavMenuPortal = ({ children, handleShowPortal, showPortal }: Props) => {
   }
  */
  useEffect(()=>{
-  let rootElement = document.getElementById('root')
-  if(rootElement){
-      elementRoot.current = rootElement as HTMLDivElement | DocumentFragment
-   }
-  },[])
+  const rootElement = document.getElementById('root') || document.body
+  elementRoot.current = rootElement
+ },[])
 
-  return (showPortal && elementRoot.current) && createPortal(
+  return elementRoot.current ? createPortal(
     <NavbarMenu handleShowPortal={handleShowPortal} showPortal={showPortal}>{children}</NavbarMenu>, elementRoot.current
-    );
+    ) : null;
 };
 
 export default NavMenuPortal;

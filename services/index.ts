@@ -99,7 +99,6 @@ export const getPostDetails = async (slug: string) => {
   const variables = {slug}
 
   const res = await fetch(graphqlAPI, {
-      //next: {revalidate: 20},
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -110,9 +109,14 @@ export const getPostDetails = async (slug: string) => {
       })
   })
 
-    const result = await res.json()
-    const resultingData = result.data as PostDetailsTypes
-    return resultingData.post;
+  const result = await res.json()
+  // Guard against null/undefined responses from the API
+  if (!result || !result.data || !result.data.post) {
+    return null
+  }
+
+  const resultingData = result.data as PostDetailsTypes
+  return resultingData.post;
 };
 
 export const getSimilarPosts = async (slug: string, categories: string[]) => {

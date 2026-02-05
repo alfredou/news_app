@@ -2,28 +2,46 @@ import React from 'react'
 import { links, social } from '@/navInfo'
 import Link from 'next/link'
 import Newsletter from './Newsletter'
+import { t, getLocaleFromPath } from '@/lib/intl'
 
 function Footer() {
   return (
-    <div className='bg-cyan-600/50 text-center py-4 w-full mt-40 p-8 flex flex-col gap-12'>
-          <div className=''>
-              <h2 className='text-3xl'>PCInfo news</h2>
-              <div className='text-2xl flex justify-center mt-10 sm:justify-center gap-8'>
-                   {social.map((links, i)=>{
-                        return <Link data-testid={`social-${i}`} key={i} href={links.url} className="hover:-translate-y-1 cursor-pointer">{links.icon}</Link>        
-                    })}
+    <footer className="mt-20">
+      <div className="w-full bg-gradient-to-r from-primary to-accent text-white py-12 shadow-inner">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-start lg:items-start justify-between gap-8">
+            <div className="flex-1">
+              <h2 className="text-3xl font-bold">{t('site.title', typeof window !== 'undefined' ? getLocaleFromPath() : 'es')}</h2>
+              <p className="mt-2 text-sm opacity-90 max-w-md">Las noticias tecnológicas más relevantes, seleccionadas por nuestro equipo. Mantente informado.</p>
+              <div className="flex gap-4 mt-4 text-2xl">
+                {social.map((s, i) => (
+                  <Link key={s.url} href={s.url} aria-label={`social-${i}`} className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-transform transform hover:-translate-y-1">
+                    <span className="text-white">{s.icon}</span>
+                  </Link>
+                ))}
               </div>
+            </div>
+
+            <div className="flex-1">
+              <h3 className="text-sm font-semibold mb-3">Secciones</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {links.map((item, i) => (
+                  <Link key={item.id} href={`/category/${item.url}`} className="text-sm font-medium bg-white/10 hover:bg-white/20 px-3 py-2 rounded-md text-white transition">{item.title}</Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="w-full lg:w-80">
+              <Newsletter />
+            </div>
           </div>
-          <h2 className='text-2xl font-bold'>Sections</h2>
-          <div className="container mx-auto mt-5 grid gap-3 max-w-4xl grid-cols-2 md:grid-cols-3 xl:justify-center">
-                    {links.map((item, i)=>{
-                     return <div data-testid={`link-${i}`} className='grid gap-4 w-full' key={i}>
-                           <Link className="text-xl font-semibold hover:text-white" href={`/category/${item.url}`}>{item.title}</Link>
-                        </div>
-                    })} 
+
+          <div className="border-t border-white/20 mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm opacity-90">{t('footer.copyright', typeof window !== 'undefined' ? getLocaleFromPath() : 'es', { year: new Date().getFullYear() })}</p>
           </div>
-          <Newsletter/>
-    </div>
+        </div>
+      </div>
+    </footer>
   )
 }
 

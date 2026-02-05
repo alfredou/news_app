@@ -6,9 +6,7 @@ function CategoryPostList({post}: {post: Edges[]}) {
   return (
        <>
                  {post.map((posts, i)=>(
-                          <>
                              <ListPosts key={i} postList={posts.node}/>
-                          </>
                  ))}
        </>
   )

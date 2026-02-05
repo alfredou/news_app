@@ -10,6 +10,24 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#0ea5e9',
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+        },
+        accent: {
+          DEFAULT: '#06b6d4'
+        }
+      },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: '1rem',
+          sm: '2rem',
+          lg: '4rem',
+        }
+      },
       keyframes: {
         cryptoAnimation: {
           '0%': { transform: 'translateX(0)' },      // Posición inicial (sin desplazamiento)

@@ -1,4 +1,5 @@
 import React from 'react';
+import { t, getLocaleFromPath } from '@/lib/intl'
 import {format} from 'date-fns';
 import { ChildrenItem, PostDetailsTypes } from '@/types';
 import Link from 'next/link';
@@ -64,20 +65,26 @@ const PostDetail = ({ post }: PostDetailsTypes ) => {
 
   switch (type) {
       case 'heading-three':
-        return <h3 key={index} className="text-xl font-semibold mb-4">{showItems()}</h3>;
+        return <h3 key={index} className="text-2xl font-extrabold mb-4 text-primary">{showItems()}</h3>;
       case 'paragraph':
-        return <p key={index} className="mb-8">{showItems()}</p>;
+        return <p key={index} className="mb-8 text-gray-800 leading-relaxed">{showItems()}</p>;
       case 'heading-four':
-        return <h4 key={index} className="text-md font-semibold mb-4">{showItems()}</h4>;
+        return <h4 key={index} className="text-lg font-semibold mb-4 text-primary">{showItems()}</h4>;
       case 'image':
-        return <Image
-            key={index}
-            alt={obj?.title === "string" ? obj.title : ''}
-            height={obj?.height}
-            width={obj?.width}
-            src={obj?.src === "string" ? obj.src : ''}
-            loading='lazy'
-          />;
+        return (
+          <div key={index} className="relative w-full h-72 mb-6 overflow-hidden rounded-lg">
+            {obj?.src && (
+              <Image
+                alt={typeof obj?.title === 'string' ? obj.title : ''}
+                src={obj?.src as string}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 800px"
+                loading='lazy'
+              />
+            )}
+          </div>
+        );
       default:
         return modifiedText;
     }
@@ -86,43 +93,47 @@ const PostDetail = ({ post }: PostDetailsTypes ) => {
   return (
     <>
       <div className="bg-white rounded-lg lg:p-8 pb-12 mb-8 mt-10">
-        <h1 className="mb-5 text-3xl font-bold border-b-2 pb-2 md:text-4xl">{post.title}</h1>
-        <ul className="mb-5 pb-5 border-b-2"><li>{post.excerpt}</li></ul>
-        <div className="relative overflow-hidden shadow-md mb-6">
-          <Image src={post.featuredImage.url} width={400} height={400} alt={post.slug} loading='lazy' className="object-top h-full w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"/>
+        <div className="mb-6">
+          <h1 className="mb-3 text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary leading-tight">{post.title}</h1>
+          <p className="text-muted italic mb-4">{post.excerpt}</p>
         </div>
+
+        <div className="relative overflow-hidden shadow-lg mb-6 h-96 rounded-lg">
+          {post.featuredImage?.url && (
+            <Image src={post.featuredImage.url} alt={post.slug} fill className="object-cover" sizes="(max-width: 768px) 100vw, 1200px" loading='lazy' />
+          )}
+        </div>
+
         <div className="px-4 lg:px-0">
-          <div className="flex items-center justify-around w-full border-b-2 pb-2">
-            <div className="hidden md:flex items-center justify-center lg:mb-0 lg:w-auto mr-8">
+          <div className="flex items-center justify-between w-full border-b-2 pb-4 mb-6">
+            <div className="flex items-center gap-3">
               <Image
                 alt={post.author.name}
-                height={30}
-                width={30}
+                height={48}
+                width={48}
                 src={post.author.photo.url}
                 className="align-middle rounded-full"
                 loading='lazy'
               />
-              <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">{post.author.name}</p>
+                <div>
+                <p className="text-sm font-semibold text-slate-900">{post.author.name}</p>
+                <p className="text-xs text-muted">{t('post.published', typeof window !== 'undefined' ? getLocaleFromPath() : 'es')} {format(new Date(post.createdAt), 'MM/dd/yyyy')}</p>
+              </div>
             </div>
-            <div className="font-medium text-gray-700">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 inline mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <span className="align-middle">{format(new Date(post.createdAt), 'MM/dd/yyyy')}</span>
+            <div className="flex items-center gap-4 text-xl">
+              {social.map((links, i)=>{
+                  return <Link data-testid={`social-${i}`} key={i} href={links.url} className="text-primary/80 hover:text-primary transition">{links.icon}</Link>
+              })}
             </div>
-         </div>
-            <div className='flex items-center justify-around mb-8 w-full border-b-2 pb-2'>
-                <div className="flex w-full justify-evenly mt-10 text-xl">
-                    {social.map((links, i)=>{
-                        return <Link data-testid={`social-${i}`} key={i} href={links.url} className="hover:-translate-y-1 cursor-pointer">{links.icon}</Link>        
-                    })}                    
-                </div>
-            </div>
-          {post.content.raw.children.map((typeObj, index) => {
-            //el children tendra el texto en un array generado por el map
-            const children: TextTypes | Iterable<React.ReactNode> = typeObj.children.map((item, itemindex) => getContentFragment(itemindex, item.text, item));
-            return getContentFragment(index, children, typeObj, typeObj.type);
-          })}
+          </div>
+
+          <article className="prose prose-lg max-w-none text-gray-800">
+            {post.content.raw.children.map((typeObj, index) => {
+              // el children tendra el texto en un array generado por el map
+              const children: TextTypes | Iterable<React.ReactNode> = typeObj.children.map((item, itemindex) => getContentFragment(itemindex, item.text, item));
+              return getContentFragment(index, children, typeObj, typeObj.type);
+            })}
+          </article>
         </div>
       </div>
 
