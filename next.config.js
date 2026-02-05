@@ -28,6 +28,8 @@ const nextConfig = {
   experimental: {
     workerThreads: false,
     cpus: 1,
+    // Explicitly opt out of Turbopack in CI/environments where it's experimental
+    turbopack: false,
   },
 };
 
