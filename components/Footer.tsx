@@ -2,7 +2,6 @@ import React from 'react'
 import { links, social } from '@/navInfo'
 import Link from 'next/link'
 import Newsletter from './Newsletter'
-import { t, getLocaleFromPath } from '@/lib/intl'
 
 function Footer() {
   return (
@@ -11,7 +10,7 @@ function Footer() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-start lg:items-start justify-between gap-8">
             <div className="flex-1">
-              <h2 className="text-3xl font-bold">{t('site.title', typeof window !== 'undefined' ? getLocaleFromPath() : 'es')}</h2>
+              <h2 className="text-3xl font-bold">PCInfo News</h2>
               <p className="mt-2 text-sm opacity-90 max-w-md">Las noticias tecnológicas más relevantes, seleccionadas por nuestro equipo. Mantente informado.</p>
               <div className="flex gap-4 mt-4 text-2xl">
                 {social.map((s, i) => (
@@ -37,7 +36,7 @@ function Footer() {
           </div>
 
           <div className="border-t border-white/20 mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm opacity-90">{t('footer.copyright', typeof window !== 'undefined' ? getLocaleFromPath() : 'es', { year: new Date().getFullYear() })}</p>
+            <p className="text-sm opacity-90">© {new Date().getFullYear()} PCInfo News — Todos los derechos reservados</p>
           </div>
         </div>
       </div>

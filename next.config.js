@@ -24,10 +24,7 @@ const nextConfig = {
       },
     ],
   },
-  i18n: {
-    locales: ['es', 'en'],
-    defaultLocale: 'es',
-  },
+  // i18n removed — project uses single static language
   experimental: {
     workerThreads: false,
     cpus: 1,

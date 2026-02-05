@@ -1,5 +1,4 @@
 import React from 'react';
-import { t, getLocaleFromPath } from '@/lib/intl'
 import {format} from 'date-fns';
 import { ChildrenItem, PostDetailsTypes } from '@/types';
 import Link from 'next/link';
@@ -115,9 +114,9 @@ const PostDetail = ({ post }: PostDetailsTypes ) => {
                 className="align-middle rounded-full"
                 loading='lazy'
               />
-                <div>
+              <div>
                 <p className="text-sm font-semibold text-slate-900">{post.author.name}</p>
-                <p className="text-xs text-muted">{t('post.published', typeof window !== 'undefined' ? getLocaleFromPath() : 'es')} {format(new Date(post.createdAt), 'MM/dd/yyyy')}</p>
+                <p className="text-xs text-muted">{format(new Date(post.createdAt), 'MM/dd/yyyy')}</p>
               </div>
             </div>
             <div className="flex items-center gap-4 text-xl">

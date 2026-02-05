@@ -1,7 +1,6 @@
 "use client"
 import React, { useRef } from 'react'
 import { useState } from 'react'
-import { t, getLocaleFromPath } from '@/lib/intl'
 import emailjs from '@emailjs/browser';
 
 
@@ -45,8 +44,8 @@ function Newsletter() {
                     <div className="card max-w-xl mx-auto">
                              <div className="flex items-start gap-4">
                                  <div className="flex-1">
-                                     <h2 className="text-2xl font-semibold mb-1">{t('newsletter.subscribe', typeof window !== 'undefined' ? getLocaleFromPath() : 'es')}</h2>
-                                     <p className="text-sm muted mb-4">{t('newsletter.placeholder', typeof window !== 'undefined' ? getLocaleFromPath() : 'es')}</p>
+                                     <h2 className="text-2xl font-semibold mb-1">Suscríbete a nuestra Newsletter</h2>
+                                     <p className="text-sm muted mb-4">Recibe las últimas noticias y artículos seleccionados directamente en tu correo.</p>
 
                                      <form ref={form} onSubmit={sendEmail} className="grid gap-3">
                                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -58,7 +57,7 @@ function Newsletter() {
 
                                          <div>
                                              <label className="sr-only" htmlFor="user_email">Email</label>
-                                             <input id="user_email" name="user_email" className="w-full p-3 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary text-black placeholder:text-muted" type="email" placeholder={t('newsletter.placeholder', typeof window !== 'undefined' ? getLocaleFromPath() : 'es')} required />
+                                             <input id="user_email" name="user_email" className="w-full p-3 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary text-black placeholder:text-muted" type="email" placeholder="tu@correo.com" required />
                                          </div>
 
                                          <div className="flex items-center justify-between gap-4">
@@ -67,10 +66,10 @@ function Newsletter() {
                                                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                                                      </svg>}
-                                                 <span>{loading ? t('newsletter.subscribing', typeof window !== 'undefined' ? getLocaleFromPath() : 'es') : t('newsletter.subscribe_cta', typeof window !== 'undefined' ? getLocaleFromPath() : 'es')}</span>
+                                                 <span>{loading ? 'Enviando...' : 'Subscribirme'}</span>
                                              </button>
 
-                                             <div className="text-sm muted">{subscription && <span className="text-green-600">{t('newsletter.success', typeof window !== 'undefined' ? getLocaleFromPath() : 'es')}</span>}</div>
+                                             <div className="text-sm muted">{subscription && <span className="text-green-600">¡Suscripción exitosa ✔️</span>}</div>
                                          </div>
                                      </form>
                                  </div>
