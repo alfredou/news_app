@@ -33,6 +33,15 @@ const nextConfig = {
     workerThreads: false,
     cpus: 1,
   },
+  webpack: (config) => {
+    // Provide an alias for the `encoding` module to a local shim so CI bundlers
+    // (or environments with nested node_modules) won't fail resolving it.
+    config.resolve = config.resolve || {};
+    config.resolve.alias = Object.assign({}, config.resolve.alias, {
+      encoding: require('path').resolve(__dirname, 'shims', 'encoding.js'),
+    });
+    return config;
+  },
 };
 
 /*const withBundleAnalyzer = require('@next/bundle-analyzer')({
