@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body className={`bg-gradient-to-b from-slate-50 to-white text-slate-900 antialiased`}>
         <div id="root" className='min-h-screen'>
            <Navbar/>

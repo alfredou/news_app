@@ -4,18 +4,18 @@ import Image from 'next/image'
 import { format } from 'date-fns'
 import Link from 'next/link'
 
-function PostCard({post, index}: {post: Edges, index: number}) {
+function PostCard({ post, index }: { post: Edges, index: number }) {
 
   const imageAspect = index === 0 ? 'aspect-[4/3]' : 'aspect-[16/9]'
 
   return (
-    <Link data-testid={`post-${index}`} href={`/post/${post.node.slug}`} className={`group relative block rounded-lg overflow-hidden shadow-lg bg-white h-full flex flex-col ${index===0 ? 'lg:col-span-2 lg:row-span-2' : ''}`}>
+    <Link data-testid={`post-${index}`} href={`/post/${post.node.slug}`} className={`group relative block rounded-lg overflow-hidden shadow-lg bg-white h-full flex flex-col ${index === 0 ? 'lg:col-span-2 lg:row-span-2' : ''}`}>
 
       {index === 0 && (
         <>
           <div className="absolute inset-0 z-0">
             {post.node.featuredImage?.url ? (
-              <Image src={post.node.featuredImage.url} alt={post.node.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw"/>
+              <Image src={post.node.featuredImage.url} alt={post.node.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
             ) : (
               <div className="w-full h-full bg-gradient-to-br from-primary/30 to-accent/30" />
             )}
@@ -31,10 +31,10 @@ function PostCard({post, index}: {post: Edges, index: number}) {
 
               <div className="w-full">
                 {post.node.excerpt && (
-                  <p className="mt-3 text-sm text-white opacity-95 max-w-2xl" style={{display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden'}}>{post.node.excerpt}</p>
+                  <p className="mt-3 text-sm text-white opacity-95 max-w-2xl" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{post.node.excerpt}</p>
                 )}
                 <div className="mt-4 flex items-center gap-3">
-                  <Image src={post.node.author.photo.url} width={40} height={40} alt={post.node.author.id} className="rounded-full ring-2 ring-white/40"/>
+                  <Image src={post.node.author.photo.url} width={40} height={40} alt={post.node.author.id} className="rounded-full ring-2 ring-white/40" />
                   <div className="text-sm text-white">{post.node.author.name} · <time className="text-xs muted">{format(new Date(post.node.createdAt), 'MM/dd/yyyy')}</time></div>
                 </div>
               </div>
@@ -48,7 +48,7 @@ function PostCard({post, index}: {post: Edges, index: number}) {
       {index !== 0 && (
         <div className={`relative w-full ${imageAspect} bg-slate-100 z-0`}>
           {post.node.featuredImage?.url ? (
-            <Image src={post.node.featuredImage.url} alt={post.node.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw"/>
+            <Image src={post.node.featuredImage.url} alt={post.node.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -74,7 +74,7 @@ function PostCard({post, index}: {post: Edges, index: number}) {
         </div>
 
         <div className="flex items-center justify-end mt-4">
-          <div className="text-sm muted">Leer</div>
+          <div className="text-sm muted">Read</div>
         </div>
       </div>
     </Link>
